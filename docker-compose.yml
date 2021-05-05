@@ -1,0 +1,44 @@
+version: "3.3"
+
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.9.1
+    container_name: elasticsearch
+    environment:
+      - node.name=es01
+      - cluster.name=es-docker-cluster
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: "10m"
+    # volumes:
+    #   - ./elastic-data:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.9.1
+    ports:
+      - 5601:5601
+    environment:
+      ELASTICSEARCH_URL: http://elasticsearch:9200
+      ELASTICSEARCH_HOSTS: '["http://elasticsearch:9200"]'
+  grafana:
+    image: grafana/grafana:7.4.5
+    ports:
+      - 3100:3000
+    volumes:
+      - ./grafana-data:/var/lib/grafana
+      - ./grafana-plugins:/var/lib/grafana/plugins
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: "10m"
