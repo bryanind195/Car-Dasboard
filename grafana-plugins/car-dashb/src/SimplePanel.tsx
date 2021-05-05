@@ -13,13 +13,13 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height }) =
 
     console.log(data)
 
-    let velocidad = data.series.find(({name}) => name === 'Average DATA.BATTERY_VOLTAGE.VALUE')?.fields[1].state?.calcs?.lastNotNull
-    velocidad =  Number.parseFloat (velocidad?.toFixed(2));
+    let velocidad = data.series.find(({name}) => name === 'Average DATA.VELOCIDAD.VALUE')?.fields[1].state?.calcs?.lastNotNull
+    velocidad =  Number.parseFloat (velocidad?.toFixed(0));
 
-    let kilometraje = data.series.find(({name}) => name === 'Average DATA.INPUT_VOLTAGE.VALUE')?.fields[1].state?.calcs?.lastNotNull
+    let kilometraje = data.series.find(({name}) => name === 'Average DATA.KILOMETRAJE.VALUE')?.fields[1].state?.calcs?.lastNotNull
     kilometraje =  Number.parseFloat (kilometraje?.toFixed(0));
 
-    let rpm = data.series.find(({name}) => name === 'Average DATA.OUTPUT_VOLTAGE.VALUE')?.fields[1].state?.calcs?.lastNotNull
+    let rpm = data.series.find(({name}) => name === 'Average DATA.RPM.VALUE')?.fields[1].state?.calcs?.lastNotNull
     rpm =  Number.parseFloat (rpm?.toFixed(0));
 
 

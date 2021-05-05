@@ -16,11 +16,9 @@ const dato = async () => {
     index: 'car_panel',
     body: {
       "@timestamp": new Date(),
-      DATACENTER: "DC-GYE",
-      FASE: "A",
-      SISTEMA: "2",
-      TIPO_EQUIPO: "UPS",
-      EQUIPO: "UPS-2-1A",
+      UNIVERSIDAD: "Salesiana GYE",
+      MARCA: "KIA",
+      MODELO: "SPORTAGE",
       DATA: {
         BATTERY_STATUS:{
           DESCRIPTION:"BATTERY STATUS",
@@ -38,15 +36,15 @@ const dato = async () => {
           DESCRIPTION:"ESTIMATED CHARGE REMAINING",
           VALUE: getRandomArbitrary(30, 100)
         },
-        BATTERY_VOLTAGE:{
+        VELOCIDAD:{
           DESCRIPTION:"BATTERY VOLTAGE",
           VALUE: getRandomArbitrary(0, 150)
         },
-        INPUT_VOLTAGE:{
+        KILOMETRAJE000:{
           DESCRIPTION:"INPUT VOLTAGE",
           VALUE: getRandomArbitrary(0, 15000)
         },
-        INPUT_VOLTAGE_2:{
+        KILOMETRAJE:{
           DESCRIPTION:"INPUT VOLTAGE 2",
           VALUE:getRandomArbitrary(0, 15000)
         },
@@ -62,7 +60,7 @@ const dato = async () => {
           DESCRIPTION:"INPUT VOLTAGE MAX",
           VALUE:getRandomArbitrary(220, 225)
         },
-        OUTPUT_VOLTAGE:{
+        RPM:{
           DESCRIPTION:"OUTPUT VOLTAGE",
           VALUE:getRandomArbitrary(0, 1000)
         },
