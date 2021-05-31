@@ -4,8 +4,6 @@ import { SimpleOptions } from 'types';
 import { css, cx } from 'emotion';
 //import { stylesFactory, useTheme } from '@grafana/ui';
 import { stylesFactory} from '@grafana/ui';
-import estadoStyles from 'styles/estadoStyles';
-
 
 interface Props extends PanelProps<SimpleOptions> {}
 
@@ -24,29 +22,9 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height }) =
     let rpm = data.series.find(({name}) => name === 'Average DATA.RPM.VALUE')?.fields[1].state?.calcs?.lastNotNull
     rpm =  Number.parseFloat (rpm?.toFixed(0));
 
-    let dir_izq = data.series.find(({name}) => name === 'Average DATA.RPM.VALUE')?.fields[1].state?.calcs?.lastNotNull
-    dir_izq =  Number.parseFloat (dir_izq?.toFixed(0));
-/*
-    pqm.datos_principales.boton_estado = MODBUS_ST === 1? estadoStyles.sinConexion : estadoStyles.ok;
-  pqm.datos_principales.boton_pqm = MODBUS_ST === 1? estadoStyles.sinConexion : estadoStyles.ok;
+    
 
-  dir_izq: string;// id = pqm_modbus
-  dir_der: string;//id = pqm_voltmax
-  neutro: string ;//id = pqm_corrmax
-  cambio1: string;// id = pqm_modbus
-  cambio2: string;//id = pqm_voltmax
-  cambio3: string ;//id = pqm_corrmax
-  cambio4: string;// id = pqm_modbus
-  temp_motor: string;//id = pqm_voltmax
-  luz_baja: string ;//id = pqm_corrmax
-  luz_alta: string;// id = pqm_modbus
-  aceite: string;//id = pqm_voltmax
-  gasolina: string ;//id = pqm_corrmax
-  gas1: string;// id = pqm_modbus
-  gas2: string;//id = pqm_voltmax
-  gas3: string ;//id = pqm_corrmax
 
-*/
   return (
     <div
       className={cx(
@@ -425,7 +403,6 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height }) =
           clipRule="evenodd"
           fill="#9f0"
           fillRule="evenodd"
-          
           d="M729.2 821.6L729.2 837.4 705.5 837.4 705.5 847 684.3 829.5 705.5 812 705.5 821.6z"
         />
         <path
