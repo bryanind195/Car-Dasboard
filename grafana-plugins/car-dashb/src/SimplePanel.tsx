@@ -4,6 +4,7 @@ import { SimpleOptions } from 'types';
 import { css, cx } from 'emotion';
 //import { stylesFactory, useTheme } from '@grafana/ui';
 import { stylesFactory} from '@grafana/ui';
+import Styles from 'styles/estadoStyles'
 
 interface Props extends PanelProps<SimpleOptions> {}
 
@@ -22,8 +23,93 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height }) =
     let rpm = data.series.find(({name}) => name === 'Average DATA.RPM.VALUE')?.fields[1].state?.calcs?.lastNotNull
     rpm =  Number.parseFloat (rpm?.toFixed(0));
 
-    
+    let classdir_izq
+    let estadodir_izq = data.series.find(({name}) => name === 'Average DATA.DIR_IZQ.VALUE')?.fields[1].state?.calcs?.lastNotNull
 
+  if (estadodir_izq === 1){
+     classdir_izq = Styles.on
+  }else{
+    classdir_izq = Styles.apagado
+  }
+
+  let classdir_der
+    let estadodir_der = data.series.find(({name}) => name === 'Average DATA.DIR_DER.VALUE')?.fields[1].state?.calcs?.lastNotNull
+
+  if (estadodir_der === 1){
+     classdir_der = Styles.on
+  }else{
+    classdir_der = Styles.apagado
+  }
+
+  let classneutro
+    let estadoneutro = data.series.find(({name}) => name === 'Average DATA.NEUTRO.VALUE')?.fields[1].state?.calcs?.lastNotNull
+
+  if (estadoneutro  === 1){
+    classneutro = Styles.on
+  }else{
+    classneutro = Styles.apagado
+  }
+
+  let classtemp_motor
+  let estadotemp_motor = data.series.find(({name}) => name === 'Average DATA.NEUTRO.VALUE')?.fields[1].state?.calcs?.lastNotNull
+
+if (estadotemp_motor  === 1){
+  classtemp_motor = Styles.on
+}else{
+  classtemp_motor = Styles.apagado
+}
+
+let classluz_baja
+  let estadoluz_baja = data.series.find(({name}) => name === 'Average DATA.NEUTRO.VALUE')?.fields[1].state?.calcs?.lastNotNull
+
+if (estadoluz_baja  === 1){
+  classluz_baja = Styles.on
+}else{
+  classluz_baja = Styles.apagado
+}
+
+let classluz_alta
+  let estadoluz_alta = data.series.find(({name}) => name === 'Average DATA.NEUTRO.VALUE')?.fields[1].state?.calcs?.lastNotNull
+
+if (estadoluz_alta  === 1){
+  classluz_alta = Styles.on
+}else{
+  classluz_alta = Styles.apagado
+}
+
+let classaceite
+  let estadoaceite = data.series.find(({name}) => name === 'Average DATA.NEUTRO.VALUE')?.fields[1].state?.calcs?.lastNotNull
+
+if (estadoaceite  === 1){
+  classaceite = Styles.on
+}else{
+  classaceite = Styles.apagado
+}
+
+let classgasolina
+  let estadogasolina = data.series.find(({name}) => name === 'Average DATA.NEUTRO.VALUE')?.fields[1].state?.calcs?.lastNotNull
+
+if (estadogasolina  === 1){
+  classgasolina = Styles.on
+}else{
+  classgasolina = Styles.apagado
+}
+
+
+/*
+ dir_izq: string;// id = polygon144 
+  dir_der: string;//id = polygon150
+  neutro: string ;//id = polygon120
+  temp_motor: string;//id = path18
+  luz_baja: string ;//id = path12
+  luz_alta: string;// id = path14
+  aceite: string;//id = path16
+  gasolina: string ;//id = path100
+  cambio1: string;// id = polygon136
+  cambio2: string;//id = path134
+  cambio3: string ;//id = path130
+  cambio4: string;// id = path128
+*/
 
   return (
     <div
@@ -352,6 +438,7 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height }) =
           />
           <path
             id="path100"
+            className={classgasolina}
             d="M861.5 130.1h24.1v3.6c1.2.2 2.5.7 3.8 1.6 2.7 2 3.8 5.2 4.3 8.5.4 2.1.7 4.6 3.4 8.4 5.4 7.4-.3 19.9-6.3 16-2.2-1.5-2.7-5.5-3.1-9.5-.4-3.5-.8-6.9-2.1-8.1v19h-24.1zm24.1 5.2v13.2c2.8.9 3.3 5.3 3.8 9.8.4 3.6.8 7.2 2.3 8.3 4.1 2.8 8.4-7.6 4.1-13.6-2.9-4-3.4-6.7-3.7-9.1-.4-2.8-1.3-5.6-3.7-7.4-.9-.6-1.9-.9-2.8-1.2zm-20.8-1.4h17.5v13.5h-17.5z"
             fill="#fc0"
           />
@@ -367,6 +454,7 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height }) =
         </g>
         <path
           id="path16"
+          className={classaceite}
           d="M859.6 340l6.5 3h19.5l5.3-2.8h5.8c1.8 0 3 1.3 3.3 2.9.4 2.1-.7 4.2-2.5 5.3l-6.4 3.7H887l-3 1.8v2.7h-17v-2.2l-9.9-9.9H850V340zm28 5.4l.4 3.7h2.3l5.7-3.3c.7-.4 1.2-1.3 1.1-2.1 0-.1-.1-.5-.3-.5h-5zm-2.7 4.4l-.3-3.7h-19.1l-4.6-2.1 9.1 9.1v.5h10.9v-1.3z"
           fill="#f60"
         />
@@ -374,21 +462,21 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height }) =
           id="path12"
           d="M809.5 400.3c10.9 0 19.7 8.9 19.7 19.8s-8.9 19.7-19.7 19.7c-5.5-13.1-5.5-26.3 0-39.5zm-25.1 11.6l15.3-4.1v1.9l-15.3 4.1zm0 25.1l15.3-4.1v1.9l-15.3 4.1zm0-12.6l15.3-4.1v1.9l-15.3 4.1z"
           clipRule="evenodd"
-          fill="#ff9"
+          className={classluz_baja}
           fillRule="evenodd"
         />
         <path
           id="path14"
           d="M945.9 439.8c10.9 0 19.8-8.9 19.8-19.7 0-10.9-8.9-19.8-19.8-19.8-5.4 13.2-5.4 26.4 0 39.5zm-25.1-11.5l15.4 4.1v-1.9l-15.4-4.1zm0-25.1l15.4 4.1v-1.9l-15.4-4.1zm0 12.5l15.4 4.1v-1.9l-15.4-4.1z"
           clipRule="evenodd"
-          fill="#ff9"
+          className={classluz_alta}
           fillRule="evenodd"
         />
         <path
           id="path18"
+          className = {classtemp_motor}
           d="M877.1 470.1h5.3v1.4h-5.3v4.6h5.3v1.3h-5.3v4.6h5.3v1.3h-5.3v4.6h5.3v1.4h-5.3v3.1c3.7.9 6.4 4.3 6.4 8.2 0 4.7-3.8 8.5-8.5 8.5s-8.4-3.8-8.4-8.5c0-3.9 2.7-7.2 6.3-8.2v-25c0-1.2.9-2.1 2.1-2.1s2.1 1 2.1 2.1z"
           clipRule="evenodd"
-          fill="#f60"
           fillRule="evenodd"
         />
         <path
@@ -400,20 +488,20 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height }) =
         />
         <path
           id="polygon144"
+          className={classdir_izq}
           clipRule="evenodd"
-          fill="#9f0"
           fillRule="evenodd"
           d="M729.2 821.6L729.2 837.4 705.5 837.4 705.5 847 684.3 829.5 705.5 812 705.5 821.6z"
         />
         <path
           id="polygon120"
-          fill="#9f0"
+          className = {classneutro}
           d="M870.1 827.4L880.8 848.4 884.5 848.4 892.9 817.2 887 817.2 881.8 836.6 871.7 817.2 867 817.2 858.6 848.4 864.5 848.4z"
         />
         <path
           id="polygon150"
+          className={classdir_der}
           clipRule="evenodd"
-          fill="#9f0"
           fillRule="evenodd"
           d="M1020.8 821.6L1020.8 837.4 1044.5 837.4 1044.5 847 1065.8 829.5 1044.5 812 1044.5 821.6z"
         />

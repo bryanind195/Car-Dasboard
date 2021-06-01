@@ -20,5 +20,8 @@
   },
   "engines": {
     "node": ">=14"
+  },
+  "dependencies": {
+    "keyframe": "^2.1.0"
   }
 }
